@@ -1,12 +1,16 @@
 package objetoNegocio;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -19,18 +23,23 @@ public class CastingPresencial implements Serializable {
     private static final long serialVersionUID = 1L;   
     private Long id;
     private int numPersonas, numFase;
-    private Fase fase;
+    //fase ¿Necesaria?
+    private Fase fase;    
+    private List <Fase> fases;
 
     public CastingPresencial() {
+        this.fases = new ArrayList<>();
     }
 
     public CastingPresencial(int numPersonas, int numFase, Fase fase) {
+        this();
         this.numPersonas = numPersonas;
         this.numFase = numFase;
         this.fase = fase;
     }
 
     public CastingPresencial(Long id, int numPersonas, int numFase, Fase fase) {
+        this();
         this.id = id;
         this.numPersonas = numPersonas;
         this.numFase = numFase;
@@ -74,6 +83,15 @@ public class CastingPresencial implements Serializable {
     public void setFase(Fase fase) {
         this.fase = fase;
     }
+
+    @OneToMany (mappedBy = "castingPresencial", cascade = CascadeType.ALL)
+    public List<Fase> getFases() {
+        return fases;
+    }
+
+    public void setFases(List<Fase> fases) {
+        this.fases = fases;
+    }       
     
     @Override
     public int hashCode() {

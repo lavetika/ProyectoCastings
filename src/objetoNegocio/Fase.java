@@ -1,11 +1,17 @@
 package objetoNegocio;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -18,21 +24,29 @@ public class Fase implements Serializable {
 
     private static final long serialVersionUID = 1L;
     private Long id;
+    //numPrueba y prueba ¿Necesarias?
     private int numPrueba;
     private Prueba prueba;
-
+    private List<Prueba> pruebas;
+    private CastingPresencial castingPresencial;
+    
     public Fase() {
+        this.pruebas = new ArrayList<>();
     }
 
-    public Fase(int numPrueba, Prueba prueba) {
+    public Fase(int numPrueba, Prueba prueba, CastingPresencial castingPresencial) {
+        this();        
         this.numPrueba = numPrueba;
         this.prueba = prueba;
+        this.castingPresencial = castingPresencial;
     }
 
-    public Fase(Long id, int numPrueba, Prueba prueba) {
+    public Fase(Long id, int numPrueba, Prueba prueba, CastingPresencial castingPresencial) {
+        this();
         this.id = id;
         this.numPrueba = numPrueba;
         this.prueba = prueba;
+        this.castingPresencial = castingPresencial;
     }      
     
     @Column (name="IdFase")
@@ -63,7 +77,26 @@ public class Fase implements Serializable {
     public void setPrueba(Prueba prueba) {
         this.prueba = prueba;
     }
-    
+
+    @OneToMany(mappedBy = "fase", cascade = CascadeType.ALL)
+    public List<Prueba> getPruebas() {
+        return pruebas;
+    }
+
+    public void setPruebas(List<Prueba> pruebas) {
+        this.pruebas = pruebas;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "CastingPresencial")
+    public CastingPresencial getCastingPresencial() {
+        return castingPresencial;
+    }
+
+    public void setCastingPresencial(CastingPresencial castingPresencial) {
+        this.castingPresencial = castingPresencial;
+    }        
+        
     @Override
     public int hashCode() {
         int hash = 0;

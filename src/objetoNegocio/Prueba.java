@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -22,21 +24,29 @@ public class Prueba implements Serializable {
     private int numSala;
     private String descripcion;
     private Date fecha;
+    private Casting casting;
+    private Fase fase;
 
     public Prueba() {
     }
 
-    public Prueba(int numSala, String descripcion, Date fecha) {
+    public Prueba(int numSala, String descripcion, Date fecha, Casting casting, 
+            Fase fase) {
         this.numSala = numSala;
         this.descripcion = descripcion;
         this.fecha = fecha;
+        this.casting = casting;
+        this.fase = fase;
     }
 
-    public Prueba(Long id, int numSala, String descripcion, Date fecha) {
+    public Prueba(Long id, int numSala, String descripcion, Date fecha, Casting casting, 
+            Fase fase) {
         this.id = id;
         this.numSala = numSala;
         this.descripcion = descripcion;
         this.fecha = fecha;
+        this.casting = casting;
+        this.fase = fase;
     }       
     
     @Column (name = "IdPrueba")
@@ -76,7 +86,27 @@ public class Prueba implements Serializable {
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
-    
+
+    @ManyToOne
+    @JoinColumn (name = "Casting")
+    public Casting getCasting() {
+        return casting;
+    }
+
+    public void setCasting(Casting casting) {
+        this.casting = casting;
+    }
+
+    @ManyToOne
+    @JoinColumn (name = "Fase")
+    public Fase getFase() {
+        return fase;
+    }
+
+    public void setFase(Fase fase) {
+        this.fase = fase;
+    }
+         
     @Override
     public int hashCode() {
         int hash = 0;

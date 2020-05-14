@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -20,21 +22,24 @@ public class Perfil implements Serializable {
     private Long id;
     private String curp, nombre;
     private int edad;
+    private Representante representante;
 
     public Perfil() {
     }
 
-    public Perfil(String curp, String nombre, int edad) {
+    public Perfil(String curp, String nombre, int edad, Representante representante) {
         this.curp = curp;
         this.nombre = nombre;
         this.edad = edad;
+        this.representante = representante;
     }
 
-    public Perfil(Long id, String curp, String nombre, int edad) {
+    public Perfil(Long id, String curp, String nombre, int edad, Representante representante) {
         this.id = id;
         this.curp = curp;
         this.nombre = nombre;
         this.edad = edad;
+        this.representante = representante;
     }
 
     @Column (name = "IdPerfil") 
@@ -74,7 +79,17 @@ public class Perfil implements Serializable {
     public void setEdad(int edad) {
         this.edad = edad;
     }
-    
+
+    @ManyToOne
+    @JoinColumn(name = "Representante")
+    public Representante getRepresentante() {
+        return representante;
+    }
+
+    public void setRepresentante(Representante representante) {
+        this.representante = representante;
+    }
+        
     @Override
     public int hashCode() {
         int hash = 0;

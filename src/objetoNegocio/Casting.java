@@ -2,12 +2,17 @@ package objetoNegocio;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -22,26 +27,36 @@ public class Casting implements Serializable {
     private Long id;
     private String codigo, nombre, descripcion;
     private Date fecha;
-    private List <Perfil> canditato;
+    private List <Perfil> canditatos;
+    private Cliente cliente;
+    private List <Prueba> pruebas;
 
     public Casting() {
+        this.canditatos = new ArrayList<>();
+        this.pruebas = new ArrayList<>();
     }
 
-    public Casting(String codigo, String nombre, String descripcion, Date fecha, List<Perfil> canditato) {
+    public Casting(String codigo, String nombre, String descripcion, Date fecha, 
+            List<Perfil> canditatos, Cliente cliente) {
+        this();
         this.codigo = codigo;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.fecha = fecha;
-        this.canditato = canditato;
+        this.canditatos = canditatos;
+        this.cliente = cliente;
     }
 
-    public Casting(Long id, String codigo, String nombre, String descripcion, Date fecha, List<Perfil> canditato) {
+    public Casting(Long id, String codigo, String nombre, String descripcion, 
+            Date fecha, List<Perfil> canditatos, Cliente cliente) {
+        this();
         this.id = id;
         this.codigo = codigo;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.fecha = fecha;
-        this.canditato = canditato;
+        this.canditatos = canditatos;
+        this.cliente = cliente;
     }
     
     @Column(name = "IdCasting")
@@ -92,14 +107,33 @@ public class Casting implements Serializable {
     }
     
     @Column (name = "Candidatos")
-    public List<Perfil> getCanditato() {
-        return canditato;
+    public List<Perfil> getCanditatos() {
+        return canditatos;
     }
 
-    public void setCanditato(List<Perfil> canditato) {
-        this.canditato = canditato;
+    public void setCanditatos(List<Perfil> canditatos) {
+        this.canditatos = canditatos;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "Cliente")
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    @OneToMany(mappedBy = "casting", cascade = CascadeType.ALL)
+    public List<Prueba> getPruebas() {
+        return pruebas;
+    }
+
+    public void setPruebas(List<Prueba> pruebas) {
+        this.pruebas = pruebas;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 0;

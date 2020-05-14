@@ -2,11 +2,15 @@ package objetoNegocio;
 
 import Enum.Actividad;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -21,11 +25,14 @@ public class Cliente implements Serializable {
     private Long id;
     private String codigo, nombre, direccion, telefono, contacto;
     private Actividad actividad;
+    private List <Casting> castings;
 
     public Cliente() {
+        this.castings = new ArrayList<>();
     }
 
     public Cliente(String codigo, String nombre, String direccion, String telefono, String contacto, Actividad actividad) {
+        this();
         this.codigo = codigo;
         this.nombre = nombre;
         this.direccion = direccion;
@@ -35,6 +42,7 @@ public class Cliente implements Serializable {
     }
 
     public Cliente(Long id, String codigo, String nombre, String direccion, String telefono, String contacto, Actividad actividad) {
+        this();
         this.id = id;
         this.codigo = codigo;
         this.nombre = nombre;
@@ -107,6 +115,15 @@ public class Cliente implements Serializable {
 
     public void setActividad(Actividad actividad) {
         this.actividad = actividad;
+    }
+
+    @OneToMany (mappedBy = "cliente", cascade = CascadeType.ALL)    
+    public List<Casting> getCastings() {
+        return castings;
+    }
+
+    public void setCastings(List<Casting> castings) {
+        this.castings = castings;
     }
     
     @Override

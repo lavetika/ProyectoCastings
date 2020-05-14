@@ -1,11 +1,15 @@
 package objetoNegocio;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -19,11 +23,14 @@ public class Representante implements Serializable {
     private static final long serialVersionUID = 1L;   
     private Long id;
     private String rfc, curp, nombre, direccion, telefono;
+    private List <Perfil> perfiles;
 
     public Representante() {
+        this.perfiles = new ArrayList();
     }
 
     public Representante(String rfc, String curp, String nombre, String direccion, String telefono) {
+        this();
         this.rfc = rfc;
         this.curp = curp;
         this.nombre = nombre;
@@ -32,6 +39,7 @@ public class Representante implements Serializable {
     }
 
     public Representante(Long id, String rfc, String curp, String nombre, String direccion, String telefono) {
+        this();
         this.id = id;
         this.rfc = rfc;
         this.curp = curp;
@@ -95,7 +103,16 @@ public class Representante implements Serializable {
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
-   
+
+    @OneToMany(mappedBy = "representante", cascade = CascadeType.ALL)
+    public List<Perfil> getPerfiles() {
+        return perfiles;
+    }
+
+    public void setPerfiles(List<Perfil> perfiles) {
+        this.perfiles = perfiles;
+    }
+       
     @Override
     public int hashCode() {
         int hash = 0;
