@@ -1,28 +1,43 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package objetoNegocio;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  *
  * @author Estefanía Aguilar
  */
 @Entity
+@Table (name = "Fases")
 public class Fase implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private int numPrueba;
+    private Prueba prueba;
 
+    public Fase() {
+    }
+
+    public Fase(int numPrueba, Prueba prueba) {
+        this.numPrueba = numPrueba;
+        this.prueba = prueba;
+    }
+
+    public Fase(Long id, int numPrueba, Prueba prueba) {
+        this.id = id;
+        this.numPrueba = numPrueba;
+        this.prueba = prueba;
+    }      
+    
+    @Column (name="IdFase")
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {
         return id;
     }
@@ -31,6 +46,24 @@ public class Fase implements Serializable {
         this.id = id;
     }
 
+    @Column (name = "NumPrueba")
+    public int getNumPrueba() {
+        return numPrueba;
+    }
+
+    public void setNumPrueba(int numPrueba) {
+        this.numPrueba = numPrueba;
+    }
+
+    @Column (name = "Prueba")
+    public Prueba getPrueba() {
+        return prueba;
+    }
+
+    public void setPrueba(Prueba prueba) {
+        this.prueba = prueba;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 0;

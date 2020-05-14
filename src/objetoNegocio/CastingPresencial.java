@@ -1,28 +1,45 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package objetoNegocio;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  *
  * @author Estefanía Aguilar
  */
 @Entity
+@Table (name = "CastingsPresenciales")
 public class CastingPresencial implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    private static final long serialVersionUID = 1L;   
     private Long id;
+    private int numPersonas, numFase;
+    private Fase fase;
 
+    public CastingPresencial() {
+    }
+
+    public CastingPresencial(int numPersonas, int numFase, Fase fase) {
+        this.numPersonas = numPersonas;
+        this.numFase = numFase;
+        this.fase = fase;
+    }
+
+    public CastingPresencial(Long id, int numPersonas, int numFase, Fase fase) {
+        this.id = id;
+        this.numPersonas = numPersonas;
+        this.numFase = numFase;
+        this.fase = fase;
+    }
+    
+    @Column (name = "IdCastingPresencial")
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {
         return id;
     }
@@ -31,6 +48,33 @@ public class CastingPresencial implements Serializable {
         this.id = id;
     }
 
+    @Column (name = "NumPersonas") 
+    public int getNumPersonas() {
+        return numPersonas;
+    }
+
+    public void setNumPersonas(int numPersonas) {
+        this.numPersonas = numPersonas;
+    }
+
+    @Column (name = "NumFase")
+    public int getNumFase() {
+        return numFase;
+    }
+
+    public void setNumFase(int numFase) {
+        this.numFase = numFase;
+    }
+
+    @Column (name = "Fase")
+    public Fase getFase() {
+        return fase;
+    }
+
+    public void setFase(Fase fase) {
+        this.fase = fase;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 0;

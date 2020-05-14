@@ -1,28 +1,40 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package objetoNegocio;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  *
  * @author Estefanía Aguilar
  */
 @Entity
-public class CandidatoNiño implements Serializable {
+@Table (name = "CadidatosNiños")
+public class CandidatoNiño extends Perfil implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    private static final long serialVersionUID = 1L;   
     private Long id;
+    private String nombreTutor;
 
+    public CandidatoNiño() {
+    }
+
+    public CandidatoNiño(String nombreTutor) {
+        this.nombreTutor = nombreTutor;
+    }
+
+    public CandidatoNiño(Long id, String nombreTutor) {
+        this.id = id;
+        this.nombreTutor = nombreTutor;
+    }
+       
+    @Column (name = "IdCandidatoNiño")
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {
         return id;
     }
@@ -31,6 +43,15 @@ public class CandidatoNiño implements Serializable {
         this.id = id;
     }
 
+    @Column (name = "NombreTutor")
+    public String getNombreTutor() {
+        return nombreTutor;
+    }
+
+    public void setNombreTutor(String nombreTutor) {
+        this.nombreTutor = nombreTutor;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 0;

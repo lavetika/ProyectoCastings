@@ -1,28 +1,45 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package objetoNegocio;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  *
  * @author Estefanía Aguilar
  */
 @Entity
+@Table (name = "Perfiles")
 public class Perfil implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private String curp, nombre;
+    private int edad;
 
+    public Perfil() {
+    }
+
+    public Perfil(String curp, String nombre, int edad) {
+        this.curp = curp;
+        this.nombre = nombre;
+        this.edad = edad;
+    }
+
+    public Perfil(Long id, String curp, String nombre, int edad) {
+        this.id = id;
+        this.curp = curp;
+        this.nombre = nombre;
+        this.edad = edad;
+    }
+
+    @Column (name = "IdPerfil") 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {
         return id;
     }
@@ -31,6 +48,33 @@ public class Perfil implements Serializable {
         this.id = id;
     }
 
+    @Column (name = "Curp")
+    public String getCurp() {
+        return curp;
+    }
+
+    public void setCurp(String curp) {
+        this.curp = curp;
+    }
+
+    @Column (name = "Nombre")
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    @Column (name = "Edad")
+    public int getEdad() {
+        return edad;
+    }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 0;
