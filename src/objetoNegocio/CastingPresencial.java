@@ -18,7 +18,7 @@ import javax.persistence.OneToMany;
  */
 @Entity
 @Table (name = "CastingsPresenciales")
-public class CastingPresencial implements Serializable {
+public class CastingPresencial extends Casting implements Serializable{
 
     private static final long serialVersionUID = 1L;   
     private Long id;
