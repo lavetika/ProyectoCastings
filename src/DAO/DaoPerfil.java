@@ -21,29 +21,39 @@ public class DaoPerfil extends DaoBase<Perfil>{
     /**
      * Método implementado de la clase BaseRepository para guardar un Perfil
      * @param perfil  
+     * @return   
      */
     @Override
-    public void guardar(Perfil perfil) {
+    public boolean guardar(Perfil perfil) {
         EntityManager entityManager = this.createEntityManager();
         entityManager.getTransaction().begin();        
+        if(perfil!=null){
         entityManager.persist(perfil);
+        }else{
+            return false;
+        }
         entityManager.getTransaction().commit();
+        return true;
     }
 
     /**
      * Método implementado de la clase BaseRepository para eliminar un Perfil
      * por id
      * @param id 
+     * @return  
      */
     @Override
-    public void eliminar(long id) {
+    public boolean eliminar(long id) {
         EntityManager entityManager = this.createEntityManager();
         entityManager.getTransaction().begin();
         Perfil perfil = entityManager.find(Perfil.class, id);
         if(perfil != null){
             entityManager.remove(perfil);
+        }else{
+            return false;
         }        
         entityManager.getTransaction().commit();
+        return true;
     }
 
     /**
@@ -51,7 +61,7 @@ public class DaoPerfil extends DaoBase<Perfil>{
      * @param perfilActualizado 
      */
     @Override
-    public void actualizar(Perfil perfilActualizado) {
+    public boolean actualizar(Perfil perfilActualizado) {
         EntityManager entityManager = this.createEntityManager();
         entityManager.getTransaction().begin();
         Perfil perfil = entityManager.find(Perfil.class, perfilActualizado.getId());
@@ -61,8 +71,11 @@ public class DaoPerfil extends DaoBase<Perfil>{
             perfil.setEdad(perfilActualizado.getEdad());
             perfil.setRepresentante(perfilActualizado.getRepresentante());
             entityManager.merge(perfil);
+        }else{
+            return false;
         }
         entityManager.getTransaction().commit();
+        return true;
     }
 
     /**

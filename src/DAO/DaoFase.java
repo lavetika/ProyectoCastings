@@ -17,58 +17,76 @@ import objetoNegocio.Fase;
  *
  * @author laura
  */
-public class DaoFase extends DaoBase<Fase>{
+public class DaoFase extends DaoBase<Fase> {
+
     /**
      * Método implementado de la clase BaseRepository para guardar una Fase
-     * @param fase  
+     *
+     * @param fase
      */
     @Override
-    public void guardar(Fase fase) {
+    public boolean guardar(Fase fase) {
         EntityManager entityManager = this.createEntityManager();
-        entityManager.getTransaction().begin();        
-        entityManager.persist(fase);
+        entityManager.getTransaction().begin();
+        if (fase != null) {
+            entityManager.persist(fase);
+        } else {
+            return false;
+        }
         entityManager.getTransaction().commit();
+        return true;
     }
 
     /**
-     * Método implementado de la clase BaseRepository para eliminar una Fase
-     * por id
-     * @param id 
+     * Método implementado de la clase BaseRepository para eliminar una Fase por
+     * id
+     *
+     * @param id
+     * @return 
      */
     @Override
-    public void eliminar(long id) {
+    public boolean eliminar(long id) {
         EntityManager entityManager = this.createEntityManager();
         entityManager.getTransaction().begin();
         Fase fase = entityManager.find(Fase.class, id);
-        if(fase != null){
+        if (fase != null) {
             entityManager.remove(fase);
-        }        
+        }else{
+            return false;
+        }
         entityManager.getTransaction().commit();
+        return true;
     }
 
     /**
      * Método implementado de la clase BaseRepository para actualizar una Fase
-     * @param faseActualizada 
+     *
+     * @param faseActualizada
+     * @return 
      */
     @Override
-    public void actualizar(Fase faseActualizada) {
+    public boolean actualizar(Fase faseActualizada) {
         EntityManager entityManager = this.createEntityManager();
         entityManager.getTransaction().begin();
         Fase fase = entityManager.find(Fase.class, faseActualizada.getId());
-        if(fase != null){
+        if (fase != null) {
             fase.setCastingPresencial(faseActualizada.getCastingPresencial());
             fase.setNumPrueba(faseActualizada.getNumPrueba());
             fase.setPrueba(faseActualizada.getPrueba());
             entityManager.merge(fase);
+        }else{
+            return false;
         }
         entityManager.getTransaction().commit();
+        return true;
     }
 
     /**
-     * Método implementado de la clase BaseRepository para buscar una Fase
-     * en especifico por id
+     * Método implementado de la clase BaseRepository para buscar una Fase en
+     * especifico por id
+     *
      * @param id
-     * @return 
+     * @return
      */
     @Override
     public Fase buscarPorId(long id) {
@@ -80,9 +98,10 @@ public class DaoFase extends DaoBase<Fase>{
     }
 
     /**
-     * Método implementado de la clase BaseRepository para buscar todas las Fases
-     * y que regresa un ArrayList con ellos
-     * @return 
+     * Método implementado de la clase BaseRepository para buscar todas las
+     * Fases y que regresa un ArrayList con ellos
+     *
+     * @return
      */
     @Override
     public ArrayList<Fase> buscarTodas() {

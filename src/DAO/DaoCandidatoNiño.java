@@ -21,37 +21,49 @@ public class DaoCandidatoNiño extends DaoBase<CandidatoNiño>{
     /**
      * Método implementado de la clase BaseRepository para guardar un CandidatoNiño 
      * @param niño  
+     * @return   
      */
     @Override
-    public void guardar(CandidatoNiño niño) {
+    public boolean guardar(CandidatoNiño niño) {
         EntityManager entityManager = this.createEntityManager();
         entityManager.getTransaction().begin();        
+        
+        if(niño!=null){
         entityManager.persist(niño);
+        }else{
+            return false;
+        }
         entityManager.getTransaction().commit();
+        return true;
     }
 
     /**
      * Método implementado de la clase BaseRepository para eliminar un CandidatoNiño
      * por id
      * @param id 
+     * @return  
      */
     @Override
-    public void eliminar(long id) {
+    public boolean eliminar(long id) {
         EntityManager entityManager = this.createEntityManager();
         entityManager.getTransaction().begin();
         CandidatoNiño niño = entityManager.find(CandidatoNiño.class, id);
         if(niño != null){
             entityManager.remove(niño);
+        }else{
+            return false;
         }        
         entityManager.getTransaction().commit();
+        return true;
     }
 
     /**
      * Método implementado de la clase BaseRepository para actualizar un CandidatoNiño
      * @param niñoActualizado 
+     * @return  
      */
     @Override
-    public void actualizar(CandidatoNiño niñoActualizado) {
+    public boolean actualizar(CandidatoNiño niñoActualizado) {
         EntityManager entityManager = this.createEntityManager();
         entityManager.getTransaction().begin();
         CandidatoNiño niño = entityManager.find(CandidatoNiño.class, niñoActualizado.getId());
@@ -62,8 +74,11 @@ public class DaoCandidatoNiño extends DaoBase<CandidatoNiño>{
             niño.setEdad(niñoActualizado.getEdad());
             niño.setRepresentante(niñoActualizado.getRepresentante());
             entityManager.merge(niño);
+        }else{
+            return false;
         }
         entityManager.getTransaction().commit();
+        return true;
     }
 
     /**
@@ -77,8 +92,12 @@ public class DaoCandidatoNiño extends DaoBase<CandidatoNiño>{
         EntityManager entityManager = this.createEntityManager();
         entityManager.getTransaction().begin();
         CandidatoNiño niño = entityManager.find(CandidatoNiño.class, id);
+        if(niño!=null){
         entityManager.getTransaction().commit();
         return niño;
+        }
+        entityManager.getTransaction().commit();
+        return null;
     }
 
     /**

@@ -17,60 +17,77 @@ import objetoNegocio.Prueba;
  *
  * @author laura
  */
-public class DaoPrueba extends DaoBase<Prueba>{
+public class DaoPrueba extends DaoBase<Prueba> {
+
     /**
      * Método implementado de la clase BaseRepository para guardar una Prueba
-     * @param prueba  
+     *
+     * @param prueba
+     * @return
      */
     @Override
-    public void guardar(Prueba prueba) {
+    public boolean guardar(Prueba prueba) {
         EntityManager entityManager = this.createEntityManager();
-        entityManager.getTransaction().begin();        
-        entityManager.persist(prueba);
+        entityManager.getTransaction().begin();
+        if (prueba != null) {
+            entityManager.persist(prueba);
+        } else {
+            return false;
+        }
         entityManager.getTransaction().commit();
+        return true;
     }
 
     /**
      * Método implementado de la clase BaseRepository para eliminar una Prueba
      * por id
-     * @param id 
+     *
+     * @param id
      */
     @Override
-    public void eliminar(long id) {
+    public boolean eliminar(long id) {
         EntityManager entityManager = this.createEntityManager();
         entityManager.getTransaction().begin();
         Prueba prueba = entityManager.find(Prueba.class, id);
-        if(prueba != null){
+        if (prueba != null) {
             entityManager.remove(prueba);
-        }        
+        }else{
+            return false;
+        }
         entityManager.getTransaction().commit();
+        return true;
     }
 
     /**
      * Método implementado de la clase BaseRepository para actualizar una Prueba
-     * @param pruebaActualizada 
+     *
+     * @param pruebaActualizada
      */
     @Override
-    public void actualizar(Prueba pruebaActualizada) {
+    public boolean actualizar(Prueba pruebaActualizada) {
         EntityManager entityManager = this.createEntityManager();
         entityManager.getTransaction().begin();
         Prueba prueba = entityManager.find(Prueba.class, pruebaActualizada.getId());
-        if(prueba != null){
+        if (prueba != null) {
             prueba.setCasting(pruebaActualizada.getCasting());
             prueba.setDescripcion(pruebaActualizada.getDescripcion());
             prueba.setFase(pruebaActualizada.getFase());
             prueba.setFecha(pruebaActualizada.getFecha());
             prueba.setNumSala(pruebaActualizada.getNumSala());
             entityManager.merge(prueba);
+        }else{
+            return false;
         }
         entityManager.getTransaction().commit();
+        return true;
     }
 
     /**
-     * Método implementado de la clase BaseRepository para buscar una Prueba
-     * en especifico por id
+     * Método implementado de la clase BaseRepository para buscar una Prueba en
+     * especifico por id
+     *
      * @param id
-     * @return 
+     * @return
      */
     @Override
     public Prueba buscarPorId(long id) {
@@ -82,9 +99,10 @@ public class DaoPrueba extends DaoBase<Prueba>{
     }
 
     /**
-     * Método implementado de la clase BaseRepository para buscar todas las Pruebas
-     * y que regresa un ArrayList con ellos
-     * @return 
+     * Método implementado de la clase BaseRepository para buscar todas las
+     * Pruebas y que regresa un ArrayList con ellos
+     *
+     * @return
      */
     @Override
     public ArrayList<Prueba> buscarTodas() {

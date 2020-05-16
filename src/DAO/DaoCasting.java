@@ -18,45 +18,60 @@ import objetoNegocio.Casting_;
  *
  * @author laura
  */
-public class DaoCasting extends DaoBase<Casting>{
+public class DaoCasting extends DaoBase<Casting> {
+
     /**
      * Método implementado de la clase BaseRepository para guardar un Casting
-     * @param casting  
+     *
+     * @param casting
+     * @return 
      */
     @Override
-    public void guardar(Casting casting) {
+    public boolean guardar(Casting casting) {
         EntityManager entityManager = this.createEntityManager();
-        entityManager.getTransaction().begin();        
-        entityManager.persist(casting);
+        entityManager.getTransaction().begin();
+        if (casting != null) {
+            entityManager.persist(casting);
+        } else {
+            return false;
+        }
+
         entityManager.getTransaction().commit();
+        return true;
     }
 
     /**
      * Método implementado de la clase BaseRepository para eliminar un Casting
      * por id
-     * @param id 
+     *
+     * @param id
+     * @return 
      */
     @Override
-    public void eliminar(long id) {
+    public boolean eliminar(long id) {
         EntityManager entityManager = this.createEntityManager();
         entityManager.getTransaction().begin();
         Casting casting = entityManager.find(Casting.class, id);
-        if(casting != null){
+        if (casting != null) {
             entityManager.remove(casting);
-        }        
+        } else {
+            return false;
+        }
         entityManager.getTransaction().commit();
+        return true;
     }
 
     /**
      * Método implementado de la clase BaseRepository para actualizar un Casting
      * @param castingActualizado 
+     * @return  
      */
     @Override
-    public void actualizar(Casting castingActualizado) {
+    public boolean actualizar(Casting castingActualizado) {
         EntityManager entityManager = this.createEntityManager();
         entityManager.getTransaction().begin();
         Casting casting = entityManager.find(Casting.class, castingActualizado.getId());
-        if(casting != null){
+        if (casting != null) {
             casting.setNombre(castingActualizado.getNombre());
             casting.setCanditatos(castingActualizado.getCanditatos());
             casting.setCliente(castingActualizado.getCliente());
@@ -65,29 +80,38 @@ public class DaoCasting extends DaoBase<Casting>{
             casting.setFecha(castingActualizado.getFecha());
             casting.setPruebas(castingActualizado.getPruebas());
             entityManager.merge(casting);
+        } else {
+            return false;
         }
         entityManager.getTransaction().commit();
+        return true;
     }
 
     /**
-     * Método implementado de la clase BaseRepository para buscar un Casting
-     * en especifico por id
+     * Método implementado de la clase BaseRepository para buscar un Casting en
+     * especifico por id
+     *
      * @param id
-     * @return 
+     * @return
      */
     @Override
     public Casting buscarPorId(long id) {
         EntityManager entityManager = this.createEntityManager();
         entityManager.getTransaction().begin();
         Casting casting = entityManager.find(Casting.class, id);
+        if (casting != null) {
+            entityManager.getTransaction().commit();
+            return casting;
+        }
         entityManager.getTransaction().commit();
-        return casting;
+        return null;
     }
 
     /**
-     * Método implementado de la clase BaseRepository para buscar todas los Castings
-     * y que regresa un ArrayList con ellos
-     * @return 
+     * Método implementado de la clase BaseRepository para buscar todas los
+     * Castings y que regresa un ArrayList con ellos
+     *
+     * @return
      */
     @Override
     public ArrayList<Casting> buscarTodas() {

@@ -17,45 +17,61 @@ import objetoNegocio.CastingPresencial;
  *
  * @author laura
  */
-public class DaoCastingPresencial extends DaoBase<CastingPresencial>{
+public class DaoCastingPresencial extends DaoBase<CastingPresencial> {
+
     /**
-     * Método implementado de la clase BaseRepository para guardar un CastingPresencial
-     * @param casting  
+     * Método implementado de la clase BaseRepository para guardar un
+     * CastingPresencial
+     *
+     * @param casting
+     * @return
      */
     @Override
-    public void guardar(CastingPresencial casting) {
+    public boolean guardar(CastingPresencial casting) {
         EntityManager entityManager = this.createEntityManager();
-        entityManager.getTransaction().begin();        
-        entityManager.persist(casting);
+        entityManager.getTransaction().begin();
+        if (casting != null) {
+            entityManager.persist(casting);
+        } else {
+            return false;
+        }
         entityManager.getTransaction().commit();
+        return true;
     }
 
     /**
-     * Método implementado de la clase BaseRepository para eliminar un CastingPresencial
-     * por id
-     * @param id 
+     * Método implementado de la clase BaseRepository para eliminar un
+     * CastingPresencial por id
+     *
+     * @param id
+     * @return
      */
     @Override
-    public void eliminar(long id) {
+    public boolean eliminar(long id) {
         EntityManager entityManager = this.createEntityManager();
         entityManager.getTransaction().begin();
         CastingPresencial casting = entityManager.find(CastingPresencial.class, id);
-        if(casting != null){
+        if (casting != null) {
             entityManager.remove(casting);
-        }        
+        } else {
+            return false;
+        }
         entityManager.getTransaction().commit();
+        return true;
     }
 
     /**
-     * Método implementado de la clase BaseRepository para actualizar un CastingPresencial
-     * @param castingActualizado 
+     * Método implementado de la clase BaseRepository para actualizar un
+     * CastingPresencial
+     *
+     * @param castingActualizado
      */
     @Override
-    public void actualizar(CastingPresencial castingActualizado) {
+    public boolean actualizar(CastingPresencial castingActualizado) {
         EntityManager entityManager = this.createEntityManager();
         entityManager.getTransaction().begin();
         CastingPresencial casting = entityManager.find(CastingPresencial.class, castingActualizado.getId());
-        if(casting != null){
+        if (casting != null) {
             //Clase padre
             casting.setNombre(castingActualizado.getNombre());
             casting.setCanditatos(castingActualizado.getCanditatos());
@@ -69,29 +85,38 @@ public class DaoCastingPresencial extends DaoBase<CastingPresencial>{
             casting.setNumPersonas(castingActualizado.getNumPersonas());
             casting.setFase(castingActualizado.getFase());
             entityManager.merge(casting);
+        } else {
+            return false;
         }
         entityManager.getTransaction().commit();
+        return true;
     }
 
     /**
-     * Método implementado de la clase BaseRepository para buscar un CastingPresencial
-     * en especifico por id
+     * Método implementado de la clase BaseRepository para buscar un
+     * CastingPresencial en especifico por id
+     *
      * @param id
-     * @return 
+     * @return
      */
     @Override
     public CastingPresencial buscarPorId(long id) {
         EntityManager entityManager = this.createEntityManager();
         entityManager.getTransaction().begin();
         CastingPresencial casting = entityManager.find(CastingPresencial.class, id);
+        if (casting != null) {
+            entityManager.getTransaction().commit();
+            return casting;
+        }
         entityManager.getTransaction().commit();
-        return casting;
+        return null;
     }
 
     /**
-     * Método implementado de la clase BaseRepository para buscar todas los casting presenciales
-     * y que regresa un ArrayList con ellos
-     * @return 
+     * Método implementado de la clase BaseRepository para buscar todas los
+     * casting presenciales y que regresa un ArrayList con ellos
+     *
+     * @return
      */
     @Override
     public ArrayList<CastingPresencial> buscarTodas() {

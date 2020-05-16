@@ -20,30 +20,39 @@ import objetoNegocio.Cliente;
 public class DaoCliente extends DaoBase<Cliente>{
     /**
      * Método implementado de la clase BaseRepository para guardar un Cliente
-     * @param agente  
+     * @param cliente  
      */
     @Override
-    public void guardar(Cliente cliente) {
+    public boolean guardar(Cliente cliente) {
         EntityManager entityManager = this.createEntityManager();
         entityManager.getTransaction().begin();        
+        if(cliente!=null){
         entityManager.persist(cliente);
+        }else{
+            return false;
+        }
         entityManager.getTransaction().commit();
+        return true;
     }
 
     /**
      * Método implementado de la clase BaseRepository para eliminar un Cliente 
      * por id
      * @param id 
+     * @return  
      */
     @Override
-    public void eliminar(long id) {
+    public boolean eliminar(long id) {
         EntityManager entityManager = this.createEntityManager();
         entityManager.getTransaction().begin();
         AgenteCasting agenteCasting = entityManager.find(AgenteCasting.class, id);
         if(agenteCasting != null){
             entityManager.remove(agenteCasting);
+        }else{
+            return false;
         }        
         entityManager.getTransaction().commit();
+        return true;
     }
 
     /**
@@ -51,7 +60,7 @@ public class DaoCliente extends DaoBase<Cliente>{
      * @param clienteActualizado 
      */
     @Override
-    public void actualizar(Cliente clienteActualizado) {
+    public boolean actualizar(Cliente clienteActualizado) {
         EntityManager entityManager = this.createEntityManager();
         entityManager.getTransaction().begin();
         Cliente cliente = entityManager.find(Cliente.class, clienteActualizado.getId());
@@ -64,8 +73,11 @@ public class DaoCliente extends DaoBase<Cliente>{
             cliente.setContacto(clienteActualizado.getContacto());
             cliente.setTelefono(clienteActualizado.getTelefono());
             entityManager.merge(cliente);
+        }else{
+            return false;
         }
         entityManager.getTransaction().commit();
+        return true;
     }
 
     /**

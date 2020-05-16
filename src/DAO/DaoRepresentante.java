@@ -21,37 +21,48 @@ public class DaoRepresentante extends DaoBase<Representante>{
     /**
      * Método implementado de la clase BaseRepository para guardar un Representante
      * @param representante  
+     * @return   
      */
     @Override
-    public void guardar(Representante representante) {
+    public boolean guardar(Representante representante) {
         EntityManager entityManager = this.createEntityManager();
         entityManager.getTransaction().begin();        
+        if(representante!=null){
         entityManager.persist(representante);
+        }else{
+            return false;
+        }
         entityManager.getTransaction().commit();
+        return true;
     }
 
     /**
      * Método implementado de la clase BaseRepository para eliminar un Representante
      * por id
      * @param id 
+     * @return  
      */
     @Override
-    public void eliminar(long id) {
+    public boolean eliminar(long id) {
         EntityManager entityManager = this.createEntityManager();
         entityManager.getTransaction().begin();
         Representante representante = entityManager.find(Representante.class, id);
         if(representante != null){
             entityManager.remove(representante);
+        }else{
+            return false;
         }        
         entityManager.getTransaction().commit();
+        return true;
     }
 
     /**
      * Método implementado de la clase BaseRepository para actualizar un Representante
      * @param representanteActualizado 
+     * @return  
      */
     @Override
-    public void actualizar(Representante representanteActualizado) {
+    public boolean actualizar(Representante representanteActualizado) {
         EntityManager entityManager = this.createEntityManager();
         entityManager.getTransaction().begin();
         Representante representante = entityManager.find(Representante.class, representanteActualizado.getId());
@@ -63,8 +74,11 @@ public class DaoRepresentante extends DaoBase<Representante>{
             representante.setRfc(representanteActualizado.getRfc());
             representante.setTelefono(representanteActualizado.getTelefono());
             entityManager.merge(representante);
+        }else{
+            return false;
         }
         entityManager.getTransaction().commit();
+        return true;
     }
 
     /**

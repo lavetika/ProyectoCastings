@@ -22,37 +22,50 @@ public class DaoCandidatoAdulto extends DaoBase<CandidatoAdulto>{
     /**
      * Método implementado de la clase BaseRepository para guardar un CandidatoAdulto
      * @param adulto  
+     * @return   
      */
     @Override
-    public void guardar(CandidatoAdulto adulto) {
+    public boolean guardar(CandidatoAdulto adulto) {
         EntityManager entityManager = this.createEntityManager();
-        entityManager.getTransaction().begin();        
-        entityManager.persist(adulto);
+        entityManager.getTransaction().begin(); 
+        if(adulto!=null){
+           entityManager.persist(adulto);
+        }else{
+            return false;
+        }
+        
         entityManager.getTransaction().commit();
+        return true;
     }
 
     /**
      * Método implementado de la clase BaseRepository para eliminar un CandidatoAdulto
      * por id
      * @param id 
+     * @return  
      */
     @Override
-    public void eliminar(long id) {
+    public boolean eliminar(long id) {
         EntityManager entityManager = this.createEntityManager();
         entityManager.getTransaction().begin();
+        
         CandidatoAdulto adulto = entityManager.find(CandidatoAdulto.class, id);
         if(adulto != null){
             entityManager.remove(adulto);
+        }else{
+            return false;
         }        
         entityManager.getTransaction().commit();
+        return true;
     }
 
     /**
      * Método implementado de la clase BaseRepository para actualizar un CandidatoAdulto
      * @param adultoActualizado 
+     * @return  
      */
     @Override
-    public void actualizar(CandidatoAdulto adultoActualizado) {
+    public boolean actualizar(CandidatoAdulto adultoActualizado) {
         EntityManager entityManager = this.createEntityManager();
         entityManager.getTransaction().begin();
         CandidatoAdulto adulto = entityManager.find(CandidatoAdulto.class, adultoActualizado.getId());
@@ -63,8 +76,11 @@ public class DaoCandidatoAdulto extends DaoBase<CandidatoAdulto>{
             adulto.setRepresentante(adultoActualizado.getRepresentante());
             adulto.setRfc(adultoActualizado.getRfc());
             entityManager.merge(adulto);
+        }else{
+            return false;
         }
         entityManager.getTransaction().commit();
+        return true;
     }
 
     /**
@@ -78,8 +94,12 @@ public class DaoCandidatoAdulto extends DaoBase<CandidatoAdulto>{
         EntityManager entityManager = this.createEntityManager();
         entityManager.getTransaction().begin();
         CandidatoAdulto adulto = entityManager.find(CandidatoAdulto.class, id);
+        if(adulto != null){
+           entityManager.getTransaction().commit();
+           return adulto;
+        }
         entityManager.getTransaction().commit();
-        return adulto;
+        return null;
     }
 
     /**

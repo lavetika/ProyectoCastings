@@ -19,19 +19,19 @@ public abstract class DaoBase <T>{
      * Método abstracto para guardar entidad
      * @param entidad 
      */
-    public abstract void guardar(T entidad);
+    public abstract boolean guardar(T entidad);
     
     /**
      * Método abstracto para eliminar entidad por id
      * @param id 
      */
-    public abstract void eliminar(long id);
+    public abstract boolean eliminar(long id);
     
     /**
      * Método abstracto para actualizar entidad
      * @param entidad 
      */
-    public abstract void actualizar(T entidad);
+    public abstract boolean actualizar(T entidad);
     
     /**
      * Método abstracto para buscar entidad por id

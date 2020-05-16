@@ -21,29 +21,41 @@ public class DaoAgenteCasting extends DaoBase<AgenteCasting>{
     /**
      * Método implementado de la clase BaseRepository para guardar un agente de casting
      * @param agente  
+     * @return   
      */
     @Override
-    public void guardar(AgenteCasting agente) {
+    public boolean guardar(AgenteCasting agente) {
+        //valida si el objeto está vacío
+        //valida si realizó la acción
         EntityManager entityManager = this.createEntityManager();
-        entityManager.getTransaction().begin();        
-        entityManager.persist(agente);
+        entityManager.getTransaction().begin();      
+        if(agente!=null){
+            entityManager.persist(agente);
+        }else{
+            return false;
+        }
         entityManager.getTransaction().commit();
+        return true;
     }
 
     /**
      * Método implementado de la clase BaseRepository para eliminar un agente de casting
      * por id
      * @param id 
+     * @return  
      */
     @Override
-    public void eliminar(long id) {
+    public boolean eliminar(long id) {
         EntityManager entityManager = this.createEntityManager();
         entityManager.getTransaction().begin();
         AgenteCasting agenteCasting = entityManager.find(AgenteCasting.class, id);
         if(agenteCasting != null){
             entityManager.remove(agenteCasting);
+        }else{
+            return false;
         }        
         entityManager.getTransaction().commit();
+        return true;
     }
 
     /**
@@ -51,7 +63,7 @@ public class DaoAgenteCasting extends DaoBase<AgenteCasting>{
      * @param agenteActualizado 
      */
     @Override
-    public void actualizar(AgenteCasting agenteActualizado) {
+    public boolean actualizar(AgenteCasting agenteActualizado) {
         EntityManager entityManager = this.createEntityManager();
         entityManager.getTransaction().begin();
         AgenteCasting agente = entityManager.find(AgenteCasting.class, agenteActualizado.getId());
@@ -62,8 +74,11 @@ public class DaoAgenteCasting extends DaoBase<AgenteCasting>{
             agente.setNumEmpleados(agenteActualizado.getNumEmpleados());
             agente.setRfc(agenteActualizado.getRfc());
             entityManager.merge(agente);
+        }else{
+            return false;
         }
         entityManager.getTransaction().commit();
+        return true;
     }
 
     /**
@@ -77,8 +92,13 @@ public class DaoAgenteCasting extends DaoBase<AgenteCasting>{
         EntityManager entityManager = this.createEntityManager();
         entityManager.getTransaction().begin();
         AgenteCasting agente = entityManager.find(AgenteCasting.class, id);
+        if(agente!=null){
+            entityManager.getTransaction().commit();
+            return agente;
+        }
+        
         entityManager.getTransaction().commit();
-        return agente;
+        return null;
     }
 
     /**
