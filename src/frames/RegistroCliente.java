@@ -6,6 +6,9 @@
 package frames;
 
 import java.awt.Color;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -40,7 +43,7 @@ public class RegistroCliente extends javax.swing.JFrame {
         textoDireccion = new javax.swing.JTextField();
         textoTelefono = new javax.swing.JTextField();
         textoContacto = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        boxActividad = new javax.swing.JComboBox<>();
         botonRegresar = new javax.swing.JButton();
         botonRegistrar = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
@@ -65,7 +68,7 @@ public class RegistroCliente extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Actividad");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Moda", "Publicidad", "Cine" }));
+        boxActividad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Moda", "Publicidad", "Cine" }));
 
         botonRegresar.setBackground(new java.awt.Color(0, 0, 0));
         botonRegresar.setForeground(new java.awt.Color(255, 255, 255));
@@ -79,6 +82,11 @@ public class RegistroCliente extends javax.swing.JFrame {
         botonRegistrar.setBackground(new java.awt.Color(0, 0, 0));
         botonRegistrar.setForeground(new java.awt.Color(255, 255, 255));
         botonRegistrar.setText("Registrar");
+        botonRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonRegistrarActionPerformed(evt);
+            }
+        });
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/registrar-usuario-png-.png"))); // NOI18N
 
@@ -115,7 +123,7 @@ public class RegistroCliente extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(textoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(0, 0, Short.MAX_VALUE))
-                                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addComponent(boxActividad, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addGap(87, 87, 87))))
         );
         layout.setVerticalGroup(
@@ -141,7 +149,7 @@ public class RegistroCliente extends javax.swing.JFrame {
                     .addComponent(textoContacto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(boxActividad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -158,6 +166,30 @@ public class RegistroCliente extends javax.swing.JFrame {
         cliente.show();
         this.dispose();
     }//GEN-LAST:event_botonRegresarActionPerformed
+
+    private void botonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistrarActionPerformed
+        if(textoNombre.getText().equals("") || textoDireccion.getText().equals("") || textoTelefono.getText().equals("")
+                || textoContacto.getText().equals(""))
+        {
+            JOptionPane.showMessageDialog(this, "Llene todos los campos");
+        }
+        else if(boxActividad.getSelectedItem().equals("Seleccionar"))
+        {
+            JOptionPane.showMessageDialog(this, "Seleccione una actividad");
+        }
+        else if(!this.validarTexto(textoNombre.getText()))
+        {
+            JOptionPane.showMessageDialog(this, "Ingrese un nombre valido");
+        }
+        else if(!this.validarTexto(textoContacto.getText()))
+        {
+            JOptionPane.showMessageDialog(this, "Ingrese un contacto valido");
+        }
+        else if(!this.validarTelefono(textoTelefono.getText()))
+        {
+            JOptionPane.showMessageDialog(this, "Ingrese un telefono valido");
+        }
+    }//GEN-LAST:event_botonRegistrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -185,6 +217,7 @@ public class RegistroCliente extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(RegistroCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -193,12 +226,28 @@ public class RegistroCliente extends javax.swing.JFrame {
             }
         });
     }
+    
+    private boolean validarTexto(String texto)
+    {
+        Pattern p = Pattern.compile("[a-zA-Z]+");
+        Matcher validacion = p.matcher(texto);
+
+        return validacion.matches();
+    }
+    
+    private boolean validarTelefono(String telefono)
+    {
+        Pattern p = Pattern.compile("[0-9-]+");
+        Matcher validacion = p.matcher(telefono);
+
+        return validacion.matches();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonRegistrar;
     private javax.swing.JButton botonRegresar;
+    private javax.swing.JComboBox<String> boxActividad;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

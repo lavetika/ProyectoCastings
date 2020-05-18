@@ -6,6 +6,10 @@
 package frames;
 
 import java.awt.Color;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -19,6 +23,7 @@ public class RegistroCasting extends javax.swing.JFrame {
     public RegistroCasting() {
         initComponents();
         this.getContentPane().setBackground(Color.DARK_GRAY);
+        ventanaEliminar.setSize(500,200);
     }
 
     /**
@@ -30,24 +35,70 @@ public class RegistroCasting extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        ventanaEliminar = new javax.swing.JFrame();
+        etiquetaFecha = new javax.swing.JLabel();
+        botonAceptarEliminar = new javax.swing.JButton();
+        botonCancelarEliminar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        boxCliente = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        boxAgente = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
+        textoNombre = new javax.swing.JTextField();
+        labelDescripcion = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        textoDescripcion = new javax.swing.JTextArea();
         jLabel5 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        textoCoste = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        listaFases = new javax.swing.JList<>();
         botonAgregar = new javax.swing.JButton();
         botonEliminar = new javax.swing.JButton();
         botonRegresar = new javax.swing.JButton();
         botonRegistrar = new javax.swing.JButton();
+
+        etiquetaFecha.setText("Esta seguro que deseas eliminar la fecha xx/xx/xxxx");
+
+        botonAceptarEliminar.setText("Aceptar");
+        botonAceptarEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAceptarEliminarActionPerformed(evt);
+            }
+        });
+
+        botonCancelarEliminar.setText("Cancelar");
+        botonCancelarEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonCancelarEliminarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout ventanaEliminarLayout = new javax.swing.GroupLayout(ventanaEliminar.getContentPane());
+        ventanaEliminar.getContentPane().setLayout(ventanaEliminarLayout);
+        ventanaEliminarLayout.setHorizontalGroup(
+            ventanaEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ventanaEliminarLayout.createSequentialGroup()
+                .addGap(88, 88, 88)
+                .addGroup(ventanaEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(etiquetaFecha)
+                    .addGroup(ventanaEliminarLayout.createSequentialGroup()
+                        .addComponent(botonAceptarEliminar)
+                        .addGap(92, 92, 92)
+                        .addComponent(botonCancelarEliminar)))
+                .addContainerGap(104, Short.MAX_VALUE))
+        );
+        ventanaEliminarLayout.setVerticalGroup(
+            ventanaEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ventanaEliminarLayout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addComponent(etiquetaFecha)
+                .addGap(32, 32, 32)
+                .addGroup(ventanaEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botonAceptarEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonCancelarEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(39, Short.MAX_VALUE))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Registrar Casting");
@@ -55,22 +106,22 @@ public class RegistroCasting extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Cliente");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        boxCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Agente");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        boxAgente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Nombre");
 
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Descripción");
+        labelDescripcion.setForeground(new java.awt.Color(255, 255, 255));
+        labelDescripcion.setText("Descripción");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        textoDescripcion.setColumns(20);
+        textoDescripcion.setRows(5);
+        jScrollPane1.setViewportView(textoDescripcion);
 
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Coste");
@@ -78,7 +129,9 @@ public class RegistroCasting extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Fases");
 
-        jScrollPane2.setViewportView(jList1);
+        listaFases.setModel(new DefaultListModel<>());
+        listaFases.setToolTipText("");
+        jScrollPane2.setViewportView(listaFases);
 
         botonAgregar.setBackground(new java.awt.Color(0, 0, 0));
         botonAgregar.setForeground(new java.awt.Color(255, 255, 255));
@@ -92,6 +145,11 @@ public class RegistroCasting extends javax.swing.JFrame {
         botonEliminar.setBackground(new java.awt.Color(0, 0, 0));
         botonEliminar.setForeground(new java.awt.Color(255, 255, 255));
         botonEliminar.setText("Eliminar");
+        botonEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEliminarActionPerformed(evt);
+            }
+        });
 
         botonRegresar.setBackground(new java.awt.Color(0, 0, 0));
         botonRegresar.setForeground(new java.awt.Color(255, 255, 255));
@@ -105,6 +163,11 @@ public class RegistroCasting extends javax.swing.JFrame {
         botonRegistrar.setBackground(new java.awt.Color(0, 0, 0));
         botonRegistrar.setForeground(new java.awt.Color(255, 255, 255));
         botonRegistrar.setText("Registrar");
+        botonRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonRegistrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -116,18 +179,18 @@ public class RegistroCasting extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel4)
+                    .addComponent(labelDescripcion)
                     .addComponent(jLabel5)
                     .addComponent(jLabel6))
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextField1)
+                            .addComponent(boxAgente, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(textoNombre)
                             .addComponent(jScrollPane1)
-                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextField2))
+                            .addComponent(boxCliente, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(textoCoste))
                         .addGap(49, 49, 49))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -149,22 +212,22 @@ public class RegistroCasting extends javax.swing.JFrame {
                 .addGap(46, 46, 46)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(boxCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(boxAgente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
+                    .addComponent(labelDescripcion)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textoCoste, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -189,7 +252,17 @@ public class RegistroCasting extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarActionPerformed
-        // TODO add your handling code here:
+        String fecha=JOptionPane.showInputDialog(this, "Ingrese una fecha");
+        if(!this.validarFecha(fecha))
+        {
+            JOptionPane.showMessageDialog(this, "Fecha no valida");
+        }
+        else
+        {
+            DefaultListModel model = (DefaultListModel) listaFases.getModel();
+            model.addElement(fecha);
+            listaFases.setModel(model);
+        }
     }//GEN-LAST:event_botonAgregarActionPerformed
 
     private void botonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegresarActionPerformed
@@ -197,6 +270,50 @@ public class RegistroCasting extends javax.swing.JFrame {
        casting.show();
        this.dispose();
     }//GEN-LAST:event_botonRegresarActionPerformed
+
+    private void botonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistrarActionPerformed
+       if(textoNombre.getText().equals("") || textoCoste.getText().equals("") || textoDescripcion.getText().equals(""))
+       {
+           JOptionPane.showMessageDialog(this, "Llene todos los campos");
+       }
+       else if(!this.validarTexto(textoNombre.getText()))
+       {
+           JOptionPane.showMessageDialog(this, "Ingrese un nombre valido");
+       }
+       else if(!this.validarCoste(textoCoste.getText()))
+       {
+           JOptionPane.showMessageDialog(this, "Ingrese un coste valido");
+       }
+       else if(listaFases.countComponents()<=2)
+       {
+           JOptionPane.showMessageDialog(this, "Se necesitan mínimo dos fases");
+       }
+    }//GEN-LAST:event_botonRegistrarActionPerformed
+
+    private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
+        if(listaFases.getSelectedValue()==null)
+        {
+            JOptionPane.showMessageDialog(this, "Selecciona una fecha");
+        }
+        else
+        {
+            etiquetaFecha.setText("¿Estas seguro que deseas eliminar "+listaFases.getSelectedValue()+"?");
+            ventanaEliminar.show();
+        }
+    }//GEN-LAST:event_botonEliminarActionPerformed
+
+    private void botonAceptarEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAceptarEliminarActionPerformed
+        int index=listaFases.getSelectedIndex();
+        System.out.println(index);
+        DefaultListModel modelo = (DefaultListModel) listaFases.getModel();
+        modelo.remove(index);
+        listaFases.setModel(modelo);
+        ventanaEliminar.hide();
+    }//GEN-LAST:event_botonAceptarEliminarActionPerformed
+
+    private void botonCancelarEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarEliminarActionPerformed
+        ventanaEliminar.hide();
+    }//GEN-LAST:event_botonCancelarEliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -224,6 +341,7 @@ public class RegistroCasting extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(RegistroCasting.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -232,25 +350,77 @@ public class RegistroCasting extends javax.swing.JFrame {
             }
         });
     }
+    
+    private boolean validarTexto(String texto)
+    {
+        Pattern p = Pattern.compile("[a-zA-Z]+");
+        Matcher validacion = p.matcher(texto);
+
+        return validacion.matches();
+    }
+    
+    private boolean validarCoste(String texto)
+    {
+        Pattern p = Pattern.compile("[0-9,]+");
+        Matcher validacion = p.matcher(texto);
+
+        return validacion.matches();
+    }
+    
+    private boolean validarFecha(String fecha)
+    {
+        Pattern p = Pattern.compile("[0-9/]+");
+        Matcher validacion = p.matcher(fecha);
+
+        if(!validacion.matches())
+        {
+            return false;
+        }
+        else if(fecha.length()!=10)
+        {
+            return false;
+        }
+        else if(fecha.charAt(2)!='/' || fecha.charAt(5)!='/')
+        {
+            return false;
+        }
+        
+        Pattern p2 = Pattern.compile("[0-9]*");
+        Matcher val1 = p.matcher(fecha.substring(0, 1));
+        Matcher val2 = p.matcher(fecha.substring(3, 4));
+        Matcher val3 = p.matcher(fecha.substring(6,9));
+        
+        if(!val1.matches() || !val2.matches() || !val3.matches())
+        {
+            return false;
+        }
+        
+        
+        return true;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonAceptarEliminar;
     private javax.swing.JButton botonAgregar;
+    private javax.swing.JButton botonCancelarEliminar;
     private javax.swing.JButton botonEliminar;
     private javax.swing.JButton botonRegistrar;
     private javax.swing.JButton botonRegresar;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JComboBox<String> boxAgente;
+    private javax.swing.JComboBox<String> boxCliente;
+    private javax.swing.JLabel etiquetaFecha;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JLabel labelDescripcion;
+    private javax.swing.JList<String> listaFases;
+    private javax.swing.JTextField textoCoste;
+    private javax.swing.JTextArea textoDescripcion;
+    private javax.swing.JTextField textoNombre;
+    private javax.swing.JFrame ventanaEliminar;
     // End of variables declaration//GEN-END:variables
 }
