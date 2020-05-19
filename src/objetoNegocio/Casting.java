@@ -156,7 +156,7 @@ public class Casting implements Serializable {
 
     @Override
     public String toString() {
-        return "objetoNegocio.Casting[ id=" + id + " ]";
+        return nombre;
     }
     
 }

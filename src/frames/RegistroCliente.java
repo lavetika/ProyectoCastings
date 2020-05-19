@@ -18,7 +18,9 @@ import objetoNegocio.Cliente;
  * @author Usuario
  */
 public class RegistroCliente extends javax.swing.JFrame {
+
     Control control;
+
     /**
      * Creates new form RegistroCliente
      */
@@ -42,7 +44,7 @@ public class RegistroCliente extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         botonRegistrar = new javax.swing.JButton();
-        botonRegresar = new javax.swing.JButton();
+        botonCancelar = new javax.swing.JButton();
         boxActividad = new javax.swing.JComboBox<>();
         textoContacto = new javax.swing.JTextField();
         textoTelefono = new javax.swing.JTextField();
@@ -78,31 +80,44 @@ public class RegistroCliente extends javax.swing.JFrame {
             }
         });
 
-        botonRegresar.setBackground(new java.awt.Color(0, 0, 0));
-        botonRegresar.setForeground(new java.awt.Color(255, 255, 255));
-        botonRegresar.setText("Regresar");
-        botonRegresar.addActionListener(new java.awt.event.ActionListener() {
+        botonCancelar.setBackground(new java.awt.Color(0, 0, 0));
+        botonCancelar.setForeground(new java.awt.Color(255, 255, 255));
+        botonCancelar.setText("Cancelar");
+        botonCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonRegresarActionPerformed(evt);
+                botonCancelarActionPerformed(evt);
             }
         });
 
         boxActividad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Moda", "Publicidad", "Cine" }));
 
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        textoContacto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textoContactoKeyTyped(evt);
+            }
+        });
+
+        textoTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textoTelefonoKeyTyped(evt);
+            }
+        });
+
+        textoNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textoNombreKeyTyped(evt);
+            }
+        });
+
         jLabel5.setText("Actividad");
 
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Télefono");
 
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Contacto");
 
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Dirección");
 
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Nombnre");
+        jLabel1.setText("Nombre");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -117,7 +132,7 @@ public class RegistroCliente extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(botonRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
-                        .addComponent(botonRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(botonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(156, 156, 156))))
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
@@ -144,7 +159,7 @@ public class RegistroCliente extends javax.swing.JFrame {
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 210, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botonRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botonRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34))
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -176,7 +191,7 @@ public class RegistroCliente extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 483, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addContainerGap()
@@ -228,7 +243,7 @@ public class RegistroCliente extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 473, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -240,49 +255,36 @@ public class RegistroCliente extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void botonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegresarActionPerformed
-        MenuCliente cliente = new MenuCliente();
-        cliente.show();
-        this.dispose();
-    }//GEN-LAST:event_botonRegresarActionPerformed
+    private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
+//        MenuCliente cliente = new MenuCliente();
+//        cliente.show();
+//        this.dispose();
+        limpiarCampos();
+    }//GEN-LAST:event_botonCancelarActionPerformed
 
     private void botonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistrarActionPerformed
-        if(textoNombre.getText().equals("") || textoDireccion.getText().equals("") || textoTelefono.getText().equals("")
-                || textoContacto.getText().equals(""))
-        {
+        if (textoNombre.getText().equals("") || textoDireccion.getText().equals("") || textoTelefono.getText().equals("")
+                || textoContacto.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Llene todos los campos");
-        }
-        else if(boxActividad.getSelectedItem().equals("Seleccionar"))
-        {
+        } else if (boxActividad.getSelectedItem().equals("Seleccionar")) {
             JOptionPane.showMessageDialog(this, "Seleccione una actividad");
-        }
-        else if(!this.validarTexto(textoNombre.getText()))
-        {
-            JOptionPane.showMessageDialog(this, "Ingrese un nombre valido");
-        }
-        else if(!this.validarTexto(textoContacto.getText()))
-        {
-            JOptionPane.showMessageDialog(this, "Ingrese un contacto valido");
-        }
-        else if(!this.validarTelefono(textoTelefono.getText()))
-        {
-            JOptionPane.showMessageDialog(this, "Ingrese un telefono valido");
-        }else{
+        } else {
             //Solamente se inicializa
             Actividad actividad = Actividad.Cine;
-            
+
             //Registra en la base de datos.
             control.getDaoCliente().guardar(new Cliente(generarCodigo(), textoNombre.getText(),
                     textoDireccion.getText(), textoTelefono.getText(), textoContacto.getText(),
-                    actividad.valueOf((String)boxActividad.getSelectedItem())));
+                    actividad.valueOf((String) boxActividad.getSelectedItem())));
             JOptionPane.showMessageDialog(this, "Se ha registrado el cliente");
+            limpiarCampos();
         }
     }//GEN-LAST:event_botonRegistrarActionPerformed
 
-    private String generarCodigo(){
+    private String generarCodigo() {
         int numero = 0;
         for (int i = 0; i < 7; i++) {
-           numero = (int) (Math.random() * 9) + 1; 
+            numero = (int) (Math.random() * 9) + 1;
         }
         return String.valueOf(numero);
     }
@@ -303,33 +305,52 @@ public class RegistroCliente extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_jmSalirActionPerformed
 
-    public void limpiarCampos(){
+    private void textoNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textoNombreKeyTyped
+        char a = evt.getKeyChar();
+        if (textoNombre.getText().length() >= 100 || (!Character.isLetter(a) && a != ' ')) {//que sean solo letras
+            evt.consume();
+        }
+    }//GEN-LAST:event_textoNombreKeyTyped
+
+    private void textoTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textoTelefonoKeyTyped
+        char a = evt.getKeyChar();
+        if (textoTelefono.getText().length() >= 15 || (!Character.isDigit(a))) {//que sean solo números
+            evt.consume();
+        }
+    }//GEN-LAST:event_textoTelefonoKeyTyped
+
+    private void textoContactoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textoContactoKeyTyped
+        char a = evt.getKeyChar();
+        if (textoNombre.getText().length() >= 100 || (!Character.isLetter(a) && a != ' ')) {//que sean solo letras
+            evt.consume();
+        }
+    }//GEN-LAST:event_textoContactoKeyTyped
+
+    public void limpiarCampos() {
         textoContacto.setText("");
         textoDireccion.setText("");
         textoNombre.setText("");
         textoTelefono.setText("");
         boxActividad.setSelectedItem("Seleccionar");
     }
-    
-    private boolean validarTexto(String texto)
-    {
-        Pattern p = Pattern.compile("[a-zA-Z]+");
-        Matcher validacion = p.matcher(texto);
 
-        return validacion.matches();
-    }
-    
-    private boolean validarTelefono(String telefono)
-    {
-        Pattern p = Pattern.compile("[0-9-]+");
-        Matcher validacion = p.matcher(telefono);
-
-        return validacion.matches();
-    }
+//    private boolean validarTexto(String texto) {
+//        Pattern p = Pattern.compile("[a-zA-Z]+");
+//        Matcher validacion = p.matcher(texto);
+//
+//        return validacion.matches();
+//    }
+//
+//    private boolean validarTelefono(String telefono) {
+//        Pattern p = Pattern.compile("[0-9-]+");
+//        Matcher validacion = p.matcher(telefono);
+//
+//        return validacion.matches();
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonCancelar;
     private javax.swing.JButton botonRegistrar;
-    private javax.swing.JButton botonRegresar;
     private javax.swing.JComboBox<String> boxActividad;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;

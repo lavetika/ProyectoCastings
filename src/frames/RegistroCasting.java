@@ -13,6 +13,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import objetoNegocio.AgenteCasting;
+import objetoNegocio.Casting;
 import objetoNegocio.Cliente;
 
 /**
@@ -20,11 +21,13 @@ import objetoNegocio.Cliente;
  * @author Usuario
  */
 public class RegistroCasting extends javax.swing.JFrame {
+
     Control control;
+
     public RegistroCasting() {
         initComponents();
         this.getContentPane().setBackground(Color.DARK_GRAY);
-        ventanaEliminar.setSize(500,200);
+        ventanaEliminar.setSize(500, 200);
         control = new Control();
         cargarClientesAgentes();
     }
@@ -45,7 +48,7 @@ public class RegistroCasting extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         botonRegistrar = new javax.swing.JButton();
-        botonRegresar = new javax.swing.JButton();
+        botonCancelar = new javax.swing.JButton();
         botonEliminar = new javax.swing.JButton();
         botonAgregar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -125,12 +128,12 @@ public class RegistroCasting extends javax.swing.JFrame {
             }
         });
 
-        botonRegresar.setBackground(new java.awt.Color(0, 0, 0));
-        botonRegresar.setForeground(new java.awt.Color(255, 255, 255));
-        botonRegresar.setText("Regresar");
-        botonRegresar.addActionListener(new java.awt.event.ActionListener() {
+        botonCancelar.setBackground(new java.awt.Color(0, 0, 0));
+        botonCancelar.setForeground(new java.awt.Color(255, 255, 255));
+        botonCancelar.setText("Cancelar");
+        botonCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonRegresarActionPerformed(evt);
+                botonCancelarActionPerformed(evt);
             }
         });
 
@@ -156,30 +159,37 @@ public class RegistroCasting extends javax.swing.JFrame {
         listaFases.setToolTipText("");
         jScrollPane2.setViewportView(listaFases);
 
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Fases");
 
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        textoCoste.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textoCosteKeyTyped(evt);
+            }
+        });
+
         jLabel5.setText("Coste");
 
         textoDescripcion.setColumns(20);
         textoDescripcion.setRows(5);
+        textoDescripcion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textoDescripcionKeyTyped(evt);
+            }
+        });
         jScrollPane1.setViewportView(textoDescripcion);
 
-        labelDescripcion.setForeground(new java.awt.Color(255, 255, 255));
         labelDescripcion.setText("Descripción");
 
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        textoNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textoNombreKeyTyped(evt);
+            }
+        });
+
         jLabel3.setText("Nombre");
 
-        boxAgente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Agente");
 
-        boxCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Cliente");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -205,7 +215,7 @@ public class RegistroCasting extends javax.swing.JFrame {
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(botonRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(botonRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(botonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -258,7 +268,7 @@ public class RegistroCasting extends javax.swing.JFrame {
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botonRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botonRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(27, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -341,61 +351,54 @@ public class RegistroCasting extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarActionPerformed
-        String fecha=JOptionPane.showInputDialog(this, "Ingrese una fecha");
-        if(!this.validarFecha(fecha))
-        {
+        String fecha = JOptionPane.showInputDialog(this, "Ingrese una fecha DD/MM/AAAA");
+        if (fecha == null) {
+
+        } else if (!this.validarFecha(fecha)) {
             JOptionPane.showMessageDialog(this, "Fecha no valida");
-        }
-        else
-        {
+        } else {
             DefaultListModel model = (DefaultListModel) listaFases.getModel();
             model.addElement(fecha);
             listaFases.setModel(model);
         }
     }//GEN-LAST:event_botonAgregarActionPerformed
 
-    private void botonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegresarActionPerformed
-       MenuCasting casting = new MenuCasting();
-       casting.show();
-       this.dispose();
-    }//GEN-LAST:event_botonRegresarActionPerformed
+    private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
+        limpiarCampos();
+    }//GEN-LAST:event_botonCancelarActionPerformed
 
     private void botonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistrarActionPerformed
-       if(textoNombre.getText().equals("") || textoCoste.getText().equals("") || textoDescripcion.getText().equals(""))
-       {
-           JOptionPane.showMessageDialog(this, "Llene todos los campos");
-       }
-       else if(!this.validarTexto(textoNombre.getText()))
-       {
-           JOptionPane.showMessageDialog(this, "Ingrese un nombre valido");
-       }
-       else if(!this.validarCoste(textoCoste.getText()))
-       {
-           JOptionPane.showMessageDialog(this, "Ingrese un coste valido");
-       }
-       else if(listaFases.countComponents()<=2)
-       {
-           JOptionPane.showMessageDialog(this, "Se necesitan mínimo dos fases");
-       }
-       else{
-           
-       }
+        if (textoNombre.getText().equals("") || textoCoste.getText().equals("") || textoDescripcion.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Llene todos los campos");
+        } else if (listaFases.getModel().getSize() < 2) {
+            JOptionPane.showMessageDialog(this, "Se necesitan mínimo una fase");
+        } else {
+
+            //Registra en la base de datos.
+            Casting casting = new Casting();
+            casting.setCliente((Cliente) boxCliente.getSelectedItem());
+            //casting.setAgenteCasting
+            casting.setNombre(textoNombre.getText());
+            casting.setDescripcion(textoDescripcion.getText());
+            //casting.setCoste
+            control.getDaoCasting().guardar(casting);
+            JOptionPane.showMessageDialog(this, "Se ha registrado el cliente");
+            limpiarCampos();
+        }
+
     }//GEN-LAST:event_botonRegistrarActionPerformed
 
     private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
-        if(listaFases.getSelectedValue()==null)
-        {
+        if (listaFases.getSelectedValue() == null) {
             JOptionPane.showMessageDialog(this, "Selecciona una fecha");
-        }
-        else
-        {
-            etiquetaFecha.setText("¿Estas seguro que deseas eliminar "+listaFases.getSelectedValue()+"?");
+        } else {
+            etiquetaFecha.setText("¿Estas seguro que deseas eliminar " + listaFases.getSelectedValue() + "?");
             ventanaEliminar.show();
         }
     }//GEN-LAST:event_botonEliminarActionPerformed
 
     private void botonAceptarEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAceptarEliminarActionPerformed
-        int index=listaFases.getSelectedIndex();
+        int index = listaFases.getSelectedIndex();
         System.out.println(index);
         DefaultListModel modelo = (DefaultListModel) listaFases.getModel();
         modelo.remove(index);
@@ -423,80 +426,113 @@ public class RegistroCasting extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_jmSalirActionPerformed
 
-    private void cargarClientesAgentes(){
+    private void textoNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textoNombreKeyTyped
+        char a = evt.getKeyChar();
+        if (textoNombre.getText().length() >= 100 || (!Character.isLetter(a) && a != ' ')) {//que sean solo letras
+            evt.consume();
+        }
+    }//GEN-LAST:event_textoNombreKeyTyped
+
+    private void textoDescripcionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textoDescripcionKeyTyped
+        char a = evt.getKeyChar();
+        if (textoNombre.getText().length() >= 250) {//que sean solo letras
+            evt.consume();
+        }
+    }//GEN-LAST:event_textoDescripcionKeyTyped
+
+    private void textoCosteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textoCosteKeyTyped
+        char a = evt.getKeyChar();
+        if (textoCoste.getText().length() >= 15 || (!Character.isDigit(a) && a != '.')) {//que sean solo números
+            evt.consume();
+        }
+    }//GEN-LAST:event_textoCosteKeyTyped
+
+    private void cargarClientesAgentes() {
         //Cargar clientes
-        DefaultComboBoxModel clientes = new DefaultComboBoxModel();
+        // DefaultComboBoxModel clientes = new DefaultComboBoxModel();
+        Cliente seleccione = new Cliente();
+        seleccione.setNombre("Seleccione");
+        boxCliente.addItem(seleccione);
         for (Cliente cliente : control.getDaoCliente().buscarTodas()) {
-            clientes.addElement(cliente);
+//            clientes.addElement(cliente);
+            boxCliente.addItem(cliente);
         }
-        boxCliente.setModel(clientes);
-        
+        // boxCliente.setModel(clientes);
+
         //Cargar agentes
-        DefaultComboBoxModel agentes = new DefaultComboBoxModel();
+        //DefaultComboBoxModel agentes = new DefaultComboBoxModel();
+        AgenteCasting seleccioneA = new AgenteCasting();
+        seleccioneA.setNombre("Seleccione");
+        boxAgente.addItem(seleccioneA);
         for (AgenteCasting agente : control.getDaoAgenteCasting().buscarTodas()) {
-            agentes.addElement(agente);
+            //agentes.addElement(agente);
+            boxAgente.addItem(agente);
         }
-        boxAgente.setModel(agentes);
-        
-    }
-    
-    private boolean validarTexto(String texto)
-    {
-        Pattern p = Pattern.compile("[a-zA-Z]+");
-        Matcher validacion = p.matcher(texto);
+        //boxAgente.setModel(agentes);
 
-        return validacion.matches();
     }
-    
-    private boolean validarCoste(String texto)
-    {
-        Pattern p = Pattern.compile("[0-9,]+");
-        Matcher validacion = p.matcher(texto);
 
-        return validacion.matches();
-    }
-    
-    private boolean validarFecha(String fecha)
-    {
+//    private boolean validarTexto(String texto)
+//    {
+//        Pattern p = Pattern.compile("[a-zA-Z]+");
+//        Matcher validacion = p.matcher(texto);
+//
+//        return validacion.matches();
+//    }
+//    
+//    private boolean validarCoste(String texto)
+//    {
+//        Pattern p = Pattern.compile("[0-9,]+");
+//        Matcher validacion = p.matcher(texto);
+//
+//        return validacion.matches();
+//    }
+    private boolean validarFecha(String fecha) {
         Pattern p = Pattern.compile("[0-9/]+");
+
         Matcher validacion = p.matcher(fecha);
 
-        if(!validacion.matches())
-        {
+        if (!validacion.matches()) {
+            return false;
+        } else if (fecha.length() != 10) {
+            return false;
+        } else if (fecha.charAt(2) != '/' || fecha.charAt(5) != '/') {
             return false;
         }
-        else if(fecha.length()!=10)
-        {
-            return false;
-        }
-        else if(fecha.charAt(2)!='/' || fecha.charAt(5)!='/')
-        {
-            return false;
-        }
-        
+
         Pattern p2 = Pattern.compile("[0-9]*");
         Matcher val1 = p.matcher(fecha.substring(0, 1));
         Matcher val2 = p.matcher(fecha.substring(3, 4));
-        Matcher val3 = p.matcher(fecha.substring(6,9));
-        
-        if(!val1.matches() || !val2.matches() || !val3.matches())
-        {
+        Matcher val3 = p.matcher(fecha.substring(6, 9));
+
+        if (!val1.matches() || !val2.matches() || !val3.matches()) {
             return false;
         }
-        
-        
+
         return true;
+    }
+
+    public void limpiarCampos() {
+        textoNombre.setText("");
+        textoDescripcion.setText("");
+        textoNombre.setText("");
+        textoCoste.setText("");
+        boxCliente.setSelectedIndex(0);
+        boxAgente.setSelectedIndex(0);
+//        boxCliente.setSelectedItem("Seleccione");
+//        boxAgente.setSelectedItem("Seleccione");
+        listaFases.setModel(new DefaultListModel<>());
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAceptarEliminar;
     private javax.swing.JButton botonAgregar;
+    private javax.swing.JButton botonCancelar;
     private javax.swing.JButton botonCancelarEliminar;
     private javax.swing.JButton botonEliminar;
     private javax.swing.JButton botonRegistrar;
-    private javax.swing.JButton botonRegresar;
-    private javax.swing.JComboBox<String> boxAgente;
-    private javax.swing.JComboBox<String> boxCliente;
+    private javax.swing.JComboBox<AgenteCasting> boxAgente;
+    private javax.swing.JComboBox<Cliente> boxCliente;
     private javax.swing.JLabel etiquetaFecha;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

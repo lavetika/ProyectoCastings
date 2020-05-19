@@ -33,8 +33,13 @@ public class Principal extends javax.swing.JFrame {
         botonCliente = new javax.swing.JButton();
         botonCasting = new javax.swing.JButton();
         imagen = new javax.swing.JLabel();
+        mbClientes = new javax.swing.JMenuBar();
+        jmMenu1 = new javax.swing.JMenu();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        jmSalir = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Principal");
         setBackground(new java.awt.Color(51, 51, 51));
         setForeground(new java.awt.Color(51, 51, 51));
 
@@ -58,6 +63,21 @@ public class Principal extends javax.swing.JFrame {
 
         imagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/casting image.jpg"))); // NOI18N
 
+        jmMenu1.setText("Menú");
+        jmMenu1.add(jSeparator1);
+
+        jmSalir.setText("Salir");
+        jmSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmSalirActionPerformed(evt);
+            }
+        });
+        jmMenu1.add(jmSalir);
+
+        mbClientes.add(jmMenu1);
+
+        setJMenuBar(mbClientes);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -78,7 +98,7 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(imagen, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botonCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botonCasting, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -105,6 +125,10 @@ public class Principal extends javax.swing.JFrame {
         MenuCasting casting = new MenuCasting();
         casting.setVisible(true);
     }//GEN-LAST:event_botonCastingActionPerformed
+
+    private void jmSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmSalirActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jmSalirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -146,5 +170,9 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton botonCasting;
     private javax.swing.JButton botonCliente;
     private javax.swing.JLabel imagen;
+    private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JMenu jmMenu1;
+    private javax.swing.JMenuItem jmSalir;
+    private javax.swing.JMenuBar mbClientes;
     // End of variables declaration//GEN-END:variables
 }

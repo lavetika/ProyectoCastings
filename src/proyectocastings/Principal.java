@@ -21,7 +21,7 @@ public class Principal {
     public static void main(String[] args) {
         // TODO code application logic here
         Control control = new Control();
-        Cliente cliente = new Cliente("123DR", "John Weak", "Las Vegas #1234", "6445026543", "Thanos", Actividad.CINE);
+        Cliente cliente = new Cliente("123DR", "John Weak", "Las Vegas #1234", "6445026543", "Thanos", Actividad.Cine);
         control.getDaoCliente().guardar(cliente);
     }
     

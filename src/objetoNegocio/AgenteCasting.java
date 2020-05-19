@@ -119,7 +119,7 @@ public class AgenteCasting implements Serializable {
 
     @Override
     public String toString() {
-        return "objetoNegocio.AgenteCasting[ id=" + id + " ]";
+        return nombre;
     }
     
 }
