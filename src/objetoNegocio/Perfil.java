@@ -23,23 +23,36 @@ public class Perfil implements Serializable {
     private String curp, nombre;
     private int edad;
     private Representante representante;
-
+    private Casting casting;
+    
     public Perfil() {
     }
 
-    public Perfil(String curp, String nombre, int edad, Representante representante) {
+    public Perfil(String curp, String nombre, int edad, Representante representante, Casting casting) {
         this.curp = curp;
         this.nombre = nombre;
         this.edad = edad;
         this.representante = representante;
+        this.casting = casting;
     }
 
-    public Perfil(Long id, String curp, String nombre, int edad, Representante representante) {
+    public Perfil(Long id, String curp, String nombre, int edad, Representante representante, Casting casting) {
         this.id = id;
         this.curp = curp;
         this.nombre = nombre;
         this.edad = edad;
         this.representante = representante;
+        this.casting = casting;
+    }
+    
+    @ManyToOne
+    @JoinColumn(name = "Casting")
+    public Casting getCasting() {
+        return casting;
+    }
+
+    public void setCasting(Casting casting) {
+        this.casting = casting;
     }
 
     @Column (name = "IdPerfil") 

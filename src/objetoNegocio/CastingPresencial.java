@@ -2,15 +2,15 @@ package objetoNegocio;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
-import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  *
@@ -23,22 +23,20 @@ public class CastingPresencial extends Casting implements Serializable{
     private static final long serialVersionUID = 1L;   
     private Long id;
     private int numPersonas, numFase;
-    //fase ¿Necesaria?
-    private Fase fase;    
-    private List <Fase> fases;
+    private List<Fase> fase;
 
     public CastingPresencial() {
-        this.fases = new ArrayList<>();
+        fase = new ArrayList<>();
     }
 
-    public CastingPresencial(int numPersonas, int numFase, Fase fase) {
+    public CastingPresencial(int numPersonas, int numFase, ArrayList<Fase> fase) {
         this();
         this.numPersonas = numPersonas;
         this.numFase = numFase;
         this.fase = fase;
     }
 
-    public CastingPresencial(Long id, int numPersonas, int numFase, Fase fase) {
+    public CastingPresencial(Long id, int numPersonas, int numFase, ArrayList<Fase> fase) {
         this();
         this.id = id;
         this.numPersonas = numPersonas;
@@ -75,23 +73,14 @@ public class CastingPresencial extends Casting implements Serializable{
         this.numFase = numFase;
     }
 
-    @Column (name = "Fase")
-    public Fase getFase() {
+    @OneToMany(mappedBy = "castingPresencial", cascade = CascadeType.ALL)
+    public List<Fase> getFase() {
         return fase;
     }
 
-    public void setFase(Fase fase) {
+    public void setFase(List<Fase> fase) {
         this.fase = fase;
-    }
-
-    @OneToMany (mappedBy = "castingPresencial", cascade = CascadeType.ALL)
-    public List<Fase> getFases() {
-        return fases;
-    }
-
-    public void setFases(List<Fase> fases) {
-        this.fases = fases;
-    }       
+    }     
     
     @Override
     public int hashCode() {

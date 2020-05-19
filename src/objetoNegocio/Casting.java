@@ -106,7 +106,7 @@ public class Casting implements Serializable {
         this.fecha = fecha;
     }
     
-    @Column (name = "Candidatos")
+    @OneToMany(mappedBy = "casting", cascade = CascadeType.ALL)
     public List<Perfil> getCanditatos() {
         return canditatos;
     }

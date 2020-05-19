@@ -10,8 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -27,11 +27,10 @@ public class Fase implements Serializable {
     //numPrueba y prueba ¿Necesarias?
     private int numPrueba;
     private Prueba prueba;
-    private List<Prueba> pruebas;
     private CastingPresencial castingPresencial;
     
     public Fase() {
-        this.pruebas = new ArrayList<>();
+        
     }
 
     public Fase(int numPrueba, Prueba prueba, CastingPresencial castingPresencial) {
@@ -69,7 +68,7 @@ public class Fase implements Serializable {
         this.numPrueba = numPrueba;
     }
 
-    @Column (name = "Prueba")
+    @OneToOne(mappedBy = "Fase", cascade = CascadeType.ALL)
     public Prueba getPrueba() {
         return prueba;
     }
@@ -78,16 +77,7 @@ public class Fase implements Serializable {
         this.prueba = prueba;
     }
 
-    @OneToMany(mappedBy = "fase", cascade = CascadeType.ALL)
-    public List<Prueba> getPruebas() {
-        return pruebas;
-    }
-
-    public void setPruebas(List<Prueba> pruebas) {
-        this.pruebas = pruebas;
-    }
-
-    @ManyToOne
+    @OneToOne()
     @JoinColumn(name = "CastingPresencial")
     public CastingPresencial getCastingPresencial() {
         return castingPresencial;
