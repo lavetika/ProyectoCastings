@@ -33,6 +33,11 @@ public class MenuCliente extends javax.swing.JFrame {
         botonRegresar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         botonRegistrar = new javax.swing.JButton();
+        mbClientes = new javax.swing.JMenuBar();
+        jmMenu1 = new javax.swing.JMenu();
+        jmPrincipal = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        jmSalir = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menu Cliente");
@@ -56,6 +61,29 @@ public class MenuCliente extends javax.swing.JFrame {
                 botonRegistrarActionPerformed(evt);
             }
         });
+
+        jmMenu1.setText("Menú");
+
+        jmPrincipal.setText("Principal");
+        jmPrincipal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmPrincipalActionPerformed(evt);
+            }
+        });
+        jmMenu1.add(jmPrincipal);
+        jmMenu1.add(jSeparator1);
+
+        jmSalir.setText("Salir");
+        jmSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmSalirActionPerformed(evt);
+            }
+        });
+        jmMenu1.add(jmSalir);
+
+        mbClientes.add(jmMenu1);
+
+        setJMenuBar(mbClientes);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -81,63 +109,50 @@ public class MenuCliente extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botonRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botonRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegresarActionPerformed
+//        Principal principal = new Principal();
+//        principal.show();
+//        this.dispose();
+        this.setVisible(false);
         Principal principal = new Principal();
-        principal.show();
-        this.dispose();
+        principal.setVisible(true);
+
     }//GEN-LAST:event_botonRegresarActionPerformed
 
     private void botonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistrarActionPerformed
-        RegistroCliente registro = new RegistroCliente();
-        registro.show();
-        this.dispose();
+//        RegistroCliente registro = new RegistroCliente();
+//        registro.show();
+//        this.dispose();
+        this.setVisible(false);
+        RegistroCliente rCliente = new RegistroCliente();
+        rCliente.setVisible(true);
     }//GEN-LAST:event_botonRegistrarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
+    private void jmSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmSalirActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jmSalirActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MenuCliente().setVisible(true);
-            }
-        });
-    }
+    private void jmPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmPrincipalActionPerformed
+        this.setVisible(false);
+        Principal principal = new Principal();
+        principal.setVisible(true);
+    }//GEN-LAST:event_jmPrincipalActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonRegistrar;
     private javax.swing.JButton botonRegresar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JMenu jmMenu1;
+    private javax.swing.JMenuItem jmPrincipal;
+    private javax.swing.JMenuItem jmSalir;
+    private javax.swing.JMenuBar mbClientes;
     // End of variables declaration//GEN-END:variables
 }

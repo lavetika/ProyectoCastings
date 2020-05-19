@@ -89,15 +89,21 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonClienteActionPerformed
+//        MenuCliente cliente = new MenuCliente();
+//        cliente.show();
+//        this.dispose();
+        this.setVisible(false);
         MenuCliente cliente = new MenuCliente();
-        cliente.show();
-        this.dispose();
+        cliente.setVisible(true);
     }//GEN-LAST:event_botonClienteActionPerformed
 
     private void botonCastingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCastingActionPerformed
+//        MenuCasting casting = new MenuCasting();
+//        casting.show();
+//        this.dispose();
+        this.setVisible(false);
         MenuCasting casting = new MenuCasting();
-        casting.show();
-        this.dispose();
+        casting.setVisible(true);
     }//GEN-LAST:event_botonCastingActionPerformed
 
     /**

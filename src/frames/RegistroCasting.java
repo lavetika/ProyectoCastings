@@ -39,24 +39,32 @@ public class RegistroCasting extends javax.swing.JFrame {
         etiquetaFecha = new javax.swing.JLabel();
         botonAceptarEliminar = new javax.swing.JButton();
         botonCancelarEliminar = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        boxCliente = new javax.swing.JComboBox<>();
-        jLabel2 = new javax.swing.JLabel();
-        boxAgente = new javax.swing.JComboBox<>();
-        jLabel3 = new javax.swing.JLabel();
-        textoNombre = new javax.swing.JTextField();
-        labelDescripcion = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        textoDescripcion = new javax.swing.JTextArea();
-        jLabel5 = new javax.swing.JLabel();
-        textoCoste = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        botonRegistrar = new javax.swing.JButton();
+        botonRegresar = new javax.swing.JButton();
+        botonEliminar = new javax.swing.JButton();
+        botonAgregar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         listaFases = new javax.swing.JList<>();
-        botonAgregar = new javax.swing.JButton();
-        botonEliminar = new javax.swing.JButton();
-        botonRegresar = new javax.swing.JButton();
-        botonRegistrar = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        textoCoste = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        textoDescripcion = new javax.swing.JTextArea();
+        labelDescripcion = new javax.swing.JLabel();
+        textoNombre = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        boxAgente = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
+        boxCliente = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
+        mbClientes = new javax.swing.JMenuBar();
+        jmMenu1 = new javax.swing.JMenu();
+        jmPrincipal = new javax.swing.JMenuItem();
+        jmMenuCasting = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        jmSalir = new javax.swing.JMenuItem();
 
         etiquetaFecha.setText("Esta seguro que deseas eliminar la fecha xx/xx/xxxx");
 
@@ -103,51 +111,14 @@ public class RegistroCasting extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Registrar Casting");
 
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Cliente");
+        jPanel2.setBackground(new java.awt.Color(187, 209, 234));
 
-        boxCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Agente");
-
-        boxAgente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Nombre");
-
-        labelDescripcion.setForeground(new java.awt.Color(255, 255, 255));
-        labelDescripcion.setText("Descripción");
-
-        textoDescripcion.setColumns(20);
-        textoDescripcion.setRows(5);
-        jScrollPane1.setViewportView(textoDescripcion);
-
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Coste");
-
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Fases");
-
-        listaFases.setModel(new DefaultListModel<>());
-        listaFases.setToolTipText("");
-        jScrollPane2.setViewportView(listaFases);
-
-        botonAgregar.setBackground(new java.awt.Color(0, 0, 0));
-        botonAgregar.setForeground(new java.awt.Color(255, 255, 255));
-        botonAgregar.setText("Agregar");
-        botonAgregar.addActionListener(new java.awt.event.ActionListener() {
+        botonRegistrar.setBackground(new java.awt.Color(0, 0, 0));
+        botonRegistrar.setForeground(new java.awt.Color(255, 255, 255));
+        botonRegistrar.setText("Registrar");
+        botonRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonAgregarActionPerformed(evt);
-            }
-        });
-
-        botonEliminar.setBackground(new java.awt.Color(0, 0, 0));
-        botonEliminar.setForeground(new java.awt.Color(255, 255, 255));
-        botonEliminar.setText("Eliminar");
-        botonEliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonEliminarActionPerformed(evt);
+                botonRegistrarActionPerformed(evt);
             }
         });
 
@@ -160,92 +131,198 @@ public class RegistroCasting extends javax.swing.JFrame {
             }
         });
 
-        botonRegistrar.setBackground(new java.awt.Color(0, 0, 0));
-        botonRegistrar.setForeground(new java.awt.Color(255, 255, 255));
-        botonRegistrar.setText("Registrar");
-        botonRegistrar.addActionListener(new java.awt.event.ActionListener() {
+        botonEliminar.setBackground(new java.awt.Color(0, 0, 0));
+        botonEliminar.setForeground(new java.awt.Color(255, 255, 255));
+        botonEliminar.setText("Eliminar");
+        botonEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonRegistrarActionPerformed(evt);
+                botonEliminarActionPerformed(evt);
             }
         });
+
+        botonAgregar.setBackground(new java.awt.Color(0, 0, 0));
+        botonAgregar.setForeground(new java.awt.Color(255, 255, 255));
+        botonAgregar.setText("Agregar");
+        botonAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAgregarActionPerformed(evt);
+            }
+        });
+
+        listaFases.setModel(new DefaultListModel<>());
+        listaFases.setToolTipText("");
+        jScrollPane2.setViewportView(listaFases);
+
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Fases");
+
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Coste");
+
+        textoDescripcion.setColumns(20);
+        textoDescripcion.setRows(5);
+        jScrollPane1.setViewportView(textoDescripcion);
+
+        labelDescripcion.setForeground(new java.awt.Color(255, 255, 255));
+        labelDescripcion.setText("Descripción");
+
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Nombre");
+
+        boxAgente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Agente");
+
+        boxCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Cliente");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 408, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel1)
+                                .addComponent(jLabel2)
+                                .addComponent(jLabel3)
+                                .addComponent(labelDescripcion)
+                                .addComponent(jLabel5)
+                                .addComponent(jLabel6))
+                            .addGap(25, 25, 25)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(boxAgente, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(textoNombre)
+                                        .addComponent(jScrollPane1)
+                                        .addComponent(boxCliente, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(textoCoste))
+                                    .addGap(14, 14, 14))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(botonAgregar)
+                                        .addComponent(botonEliminar)))))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addGap(29, 29, 29)
+                            .addComponent(botonRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(botonRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(55, 55, 55)))
+                    .addContainerGap()))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 489, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1)
+                        .addComponent(boxCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(18, 18, 18)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2)
+                        .addComponent(boxAgente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(18, 18, 18)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3)
+                        .addComponent(textoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(112, 112, 112)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(labelDescripcion)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(textoCoste, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel5))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(28, 28, 28)
+                            .addComponent(jLabel6))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(18, 18, 18)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(botonAgregar)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(botonEliminar))
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGap(28, 28, 28)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(botonRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(botonRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(22, Short.MAX_VALUE))
+        );
+
+        jmMenu1.setText("Menú");
+
+        jmPrincipal.setText("Principal");
+        jmPrincipal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmPrincipalActionPerformed(evt);
+            }
+        });
+        jmMenu1.add(jmPrincipal);
+
+        jmMenuCasting.setText("Menú Casting");
+        jmMenuCasting.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmMenuCastingActionPerformed(evt);
+            }
+        });
+        jmMenu1.add(jmMenuCasting);
+        jmMenu1.add(jSeparator1);
+
+        jmSalir.setText("Salir");
+        jmSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmSalirActionPerformed(evt);
+            }
+        });
+        jmMenu1.add(jmSalir);
+
+        mbClientes.add(jmMenu1);
+
+        setJMenuBar(mbClientes);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(labelDescripcion)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6))
-                .addGap(25, 25, 25)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(boxAgente, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(textoNombre)
-                            .addComponent(jScrollPane1)
-                            .addComponent(boxCliente, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(textoCoste))
-                        .addGap(49, 49, 49))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(botonAgregar)
-                            .addComponent(botonEliminar))
-                        .addGap(0, 35, Short.MAX_VALUE))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(79, 79, 79)
-                .addComponent(botonRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(botonRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(90, 90, 90))
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(46, 46, 46)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(boxCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(boxAgente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(textoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelDescripcion)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(textoCoste, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(jLabel6))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(botonAgregar)
-                                .addGap(18, 18, 18)
-                                .addComponent(botonEliminar))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botonRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -315,41 +392,23 @@ public class RegistroCasting extends javax.swing.JFrame {
         ventanaEliminar.hide();
     }//GEN-LAST:event_botonCancelarEliminarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RegistroCasting.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RegistroCasting.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RegistroCasting.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RegistroCasting.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
+    private void jmPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmPrincipalActionPerformed
+        this.setVisible(false);
+        Principal principal = new Principal();
+        principal.setVisible(true);
+    }//GEN-LAST:event_jmPrincipalActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new RegistroCasting().setVisible(true);
-            }
-        });
-    }
+    private void jmMenuCastingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmMenuCastingActionPerformed
+        this.setVisible(false);
+        MenuCasting mCasting = new MenuCasting();
+        mCasting.setVisible(true);
+    }//GEN-LAST:event_jmMenuCastingActionPerformed
+
+    private void jmSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmSalirActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jmSalirActionPerformed
+
+   
     
     private boolean validarTexto(String texto)
     {
@@ -414,10 +473,18 @@ public class RegistroCasting extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JMenu jmMenu1;
+    private javax.swing.JMenuItem jmMenuCasting;
+    private javax.swing.JMenuItem jmPrincipal;
+    private javax.swing.JMenuItem jmSalir;
     private javax.swing.JLabel labelDescripcion;
     private javax.swing.JList<String> listaFases;
+    private javax.swing.JMenuBar mbClientes;
     private javax.swing.JTextField textoCoste;
     private javax.swing.JTextArea textoDescripcion;
     private javax.swing.JTextField textoNombre;
