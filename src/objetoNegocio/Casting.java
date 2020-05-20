@@ -1,7 +1,7 @@
 package objetoNegocio;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -14,6 +14,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -36,26 +38,20 @@ public class Casting implements Serializable {
         this.pruebas = new ArrayList<>();
     }
 
-    public Casting(String codigo, String nombre, String descripcion, Date fecha, 
-            List<Perfil> canditatos, Cliente cliente) {
-        this();
+    public Casting(String codigo, String nombre, String descripcion, Date fecha, Cliente cliente) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.fecha = fecha;
-        this.canditatos = canditatos;
         this.cliente = cliente;
     }
 
-    public Casting(Long id, String codigo, String nombre, String descripcion, 
-            Date fecha, List<Perfil> canditatos, Cliente cliente) {
-        this();
+    public Casting(Long id, String codigo, String nombre, String descripcion, Date fecha, Cliente cliente) {
         this.id = id;
         this.codigo = codigo;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.fecha = fecha;
-        this.canditatos = canditatos;
         this.cliente = cliente;
     }
     
@@ -98,6 +94,7 @@ public class Casting implements Serializable {
     }
 
     @Column (name = "Fecha")
+    @Temporal(TemporalType.DATE)
     public Date getFecha() {
         return fecha;
     }

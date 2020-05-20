@@ -256,10 +256,10 @@ public class RegistroCliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
-//        MenuCliente cliente = new MenuCliente();
-//        cliente.show();
-//        this.dispose();
-        limpiarCampos();
+        MenuCliente cliente = new MenuCliente();
+        cliente.show();
+        this.dispose();
+//        limpiarCampos();
     }//GEN-LAST:event_botonCancelarActionPerformed
 
     private void botonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistrarActionPerformed
@@ -283,10 +283,12 @@ public class RegistroCliente extends javax.swing.JFrame {
 
     private String generarCodigo() {
         int numero = 0;
+        String clave = "";
         for (int i = 0; i < 7; i++) {
             numero = (int) (Math.random() * 9) + 1;
+            clave = clave + numero;
         }
-        return String.valueOf(numero);
+        return clave;
     }
     private void jmPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmPrincipalActionPerformed
         this.setVisible(false);

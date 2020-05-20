@@ -125,7 +125,7 @@ public class Perfil implements Serializable {
 
     @Override
     public String toString() {
-        return "objetoNegocio.Perfil[ id=" + id + " ]";
+        return nombre;
     }
     
 }
