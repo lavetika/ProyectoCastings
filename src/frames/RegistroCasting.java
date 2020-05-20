@@ -304,7 +304,7 @@ public class RegistroCasting extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jmMenu1.setText("Menú");
@@ -346,7 +346,7 @@ public class RegistroCasting extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -370,13 +370,15 @@ public class RegistroCasting extends javax.swing.JFrame {
     }//GEN-LAST:event_botonCancelarActionPerformed
 
     private void botonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistrarActionPerformed
-        if (textoNombre.getText().equals("") || textoCoste.getText().equals("") || textoDescripcion.getText().equals("")) {
+        if (textoNombre.getText().equals("") || textoCoste.getText().equals("") || textoDescripcion.getText().equals("")
+                || boxAgente.getSelectedIndex()==0||boxCliente.getSelectedIndex()==0) {
             JOptionPane.showMessageDialog(this, "Llene todos los campos");
         } else if (listaFases.getModel().getSize() < 2) {
             JOptionPane.showMessageDialog(this, "Se necesitan mínimo una fase");
         } else {
             //Registra en la base de datos.
-            Casting casting = new Casting(generarCodigo(), textoNombre.getText(), textoDescripcion.getText(), new Date(), (Cliente)boxCliente.getSelectedItem());
+            Casting casting = new Casting(generarCodigo(), textoNombre.getText(), textoDescripcion.getText(), 
+                    new Date(), (Cliente)boxCliente.getSelectedItem());
             control.getDaoCasting().guardar(casting);
             JOptionPane.showMessageDialog(this, "Se ha registrado el cliente");
             limpiarCampos();
